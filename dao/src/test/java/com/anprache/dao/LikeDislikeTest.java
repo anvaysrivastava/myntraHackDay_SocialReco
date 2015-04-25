@@ -13,7 +13,7 @@ public class LikeDislikeTest extends BaseDaoTest {
     @Test
     public void testLikeIntegration() throws Exception {
         LikeDislike likeDislike = new LikeDislike();
-        likeDislike.setAccountId("ACC1");
+        likeDislike.setAccountId("ACC10");
         likeDislike.setProductId(123);
         boolean success = likeDislike.saveIt();
         Assert.assertTrue(success);

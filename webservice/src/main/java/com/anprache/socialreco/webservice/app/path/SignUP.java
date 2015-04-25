@@ -1,5 +1,7 @@
 package com.anprache.socialreco.webservice.app.path;
 
+import com.anprache.dao.User;
+import com.anprache.dao.utils.DBUtils;
 import com.anprache.social.common.constants.Constants;
 
 import javax.ws.rs.POST;
@@ -20,8 +22,14 @@ public class SignUP {
 
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.USER_NAME) String userName){
-        return "SUCCESS";
+    public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name){
+        DBUtils.init();
+        User user = new User();
+        user.setAccountId(accountId);
+        user.setName(name);
+        boolean success = user.saveIt();
+        DBUtils.commit();
+        return success ? "SUCCESS" : "FAILED";
     }
 
 

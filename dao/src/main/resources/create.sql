@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS `myntra`;
 DROP TABLE IF EXISTS `login`;
 DROP TABLE IF EXISTS `like_dislikes`;
 DROP TABLE IF EXISTS `users`;

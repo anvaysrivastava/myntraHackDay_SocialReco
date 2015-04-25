@@ -18,7 +18,7 @@ public class Login extends Model {
     }
 
     public int getAccountNumber() {
-        return (Integer) get(ACCOUNT_NUMBER);
+        return getInteger(ACCOUNT_NUMBER);
     }
 
     public String getEmail() {

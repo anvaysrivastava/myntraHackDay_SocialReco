@@ -1,6 +1,6 @@
 package com.anprache.dao;
 
-import org.javalite.activejdbc.Base;
+import com.anprache.dao.utils.DBUtils;
 import org.junit.After;
 import org.junit.Before;
 
@@ -10,15 +10,12 @@ import org.junit.Before;
 public class BaseDaoTest {
     @Before
     public void setUp() throws Exception {
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/myntra", "root", "");
-        Base.openTransaction();
+        DBUtils.init();
     }
 
     @After
     public void tearDown() throws Exception {
-        Base.rollbackTransaction();
-        Base.close();
-
+        DBUtils.rollback();
     }
 
 }

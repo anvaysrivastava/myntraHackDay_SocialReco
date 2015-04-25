@@ -12,6 +12,7 @@
         <module>webservice</module>
         <module>dao</module>
         <module>common</module>
+        <module>processor</module>
     </modules>
 
     <dependencies>

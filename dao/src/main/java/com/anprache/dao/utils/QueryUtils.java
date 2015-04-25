@@ -1,6 +1,7 @@
 package com.anprache.dao.utils;
 
 import com.anprache.dao.Follow;
+import com.anprache.dao.LikeDislike;
 import com.anprache.dao.User;
 
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.stream.Collectors;
  * Created by pratyush.verma on 26/04/15.
  */
 public class QueryUtils {
-    public static List<String> getFollowingProduct(String accountId) {
-        List<Follow> following = Follow.where(Follow.FOLLOWED_BY + " = ?", accountId);
-        return following.stream().map(Follow::getFollows).collect(Collectors.toList());
+    public static List<Integer> getLikedProducts(String accountId) {
+        List<LikeDislike> following = LikeDislike.where(LikeDislike.ACCOUNT_ID + " = ?", accountId);
+        return following.stream().map(LikeDislike::getProductId).collect(Collectors.toList());
     }
 
-    public static List<Follow> getFollowing(String accountId) {
+    public static List<Follow> getFollowingPeople(String accountId) {
         List<Follow> following = Follow.where(Follow.FOLLOWED_BY + " = ?", accountId);
         return following;
     }

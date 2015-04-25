@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>webservice</artifactId>
+  <artifactId>processor</artifactId>
   <build>
     <plugins>
       <plugin>
@@ -22,7 +22,7 @@
               <transformers>
                 <transformer />
                 <transformer>
-                  <mainClass>com.anprache.socialreco.webservice.app.SocialReco</mainClass>
+                  <mainClass>com.anprache.social.processor.Processor</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -3,6 +3,7 @@ package com.anprache.socialreco.webservice.app;
 import com.anprache.socialreco.webservice.app.config.SocialRecoConfig;
 import com.anprache.socialreco.webservice.app.healthcheck.ConfigHealthCheck;
 import com.anprache.socialreco.webservice.app.path.Hello;
+import com.anprache.socialreco.webservice.app.path.RegisterProductSwipe;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,6 +31,9 @@ public class SocialReco extends Application<SocialRecoConfig> {
         //Register the path
         final Hello hello = new Hello();
         environment.jersey().register(hello);
+
+        RegisterProductSwipe registerProductSwipe = new RegisterProductSwipe();
+        environment.jersey().register(registerProductSwipe);
         //Register the path ends
 
 

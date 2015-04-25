@@ -16,6 +16,8 @@ public class CompareUtils {
                 common++;
             }
         }
+        if (productFollowedByA.size() == 0)
+            return 0.0;
         return (common / (double) productFollowedByA.size()) * 100.0;
     }
 }

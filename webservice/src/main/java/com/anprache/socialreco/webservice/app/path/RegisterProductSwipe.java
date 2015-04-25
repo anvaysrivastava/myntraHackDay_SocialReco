@@ -1,7 +1,6 @@
 package com.anprache.socialreco.webservice.app.path;
 
 import com.anprache.dao.LikeDislike;
-import com.anprache.dao.utils.DBUtils;
 import com.anprache.social.common.constants.Constants;
 
 import javax.ws.rs.POST;
@@ -21,12 +20,10 @@ public class RegisterProductSwipe {
     public String action(@QueryParam(Constants.ACCOUNT_ID)String accountId, @QueryParam(Constants.PRODUCT_ID) String productId, @QueryParam(Constants.SWIPE_RESPONSE)Boolean swipeResponse ){
         //TODO insertion logic here.
         if (Boolean.TRUE.equals(swipeResponse)) {
-            DBUtils.init();
             LikeDislike likeDislike = new LikeDislike();
             likeDislike.setAccountId(accountId);
             likeDislike.setProductId(Integer.parseInt(productId));
             boolean success = likeDislike.saveIt();
-            DBUtils.commit();
             if (success) {
                 return "SUCCESS";
             }

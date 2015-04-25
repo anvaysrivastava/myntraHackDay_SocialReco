@@ -14,6 +14,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,16 +33,26 @@ public class SearchPeople {
         List<PersonInRespectOfAnotherPerson> response = Lists.newArrayList();
 
         List<User> users = QueryUtils.getUsers(searchString);
-        List<String> personAProduct = QueryUtils.getFollowingPeople(searchAccountId).stream().map(String::valueOf).collect(Collectors.toList());
+        List<String> personAProduct = QueryUtils.getLikedProducts(searchAccountId).stream().map(String::valueOf).collect(Collectors.toList());
 
         for (User anotherUser : users) {
-            List<String> personBProduct = QueryUtils.getFollowingPeople(anotherUser.getAccountId()).stream().map(String::valueOf).collect(Collectors.toList());
+            if (anotherUser.getAccountId().equals(searchAccountId)) {
+                continue;
+            }
+            List<String> personBProduct = QueryUtils.getLikedProducts(anotherUser.getAccountId()).stream().map(String::valueOf).collect(Collectors.toList());
             double score = CompareUtils.compare(personAProduct, personBProduct);
             PersonInRespectOfAnotherPerson anotherPerson = new PersonInRespectOfAnotherPerson();
             anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId()));
             anotherPerson.setPersonDifference(new PersonDifference(String.valueOf(score)));
             response.add(anotherPerson);
         }
+
+        Collections.sort(response, new Comparator<PersonInRespectOfAnotherPerson>() {
+            @Override
+            public int compare(PersonInRespectOfAnotherPerson o1, PersonInRespectOfAnotherPerson o2) {
+                return Double.parseDouble(o1.getPersonDifference().getPercentageDifference()) - Double.parseDouble(o2.getPersonDifference().getPercentageDifference()) > 0 ? -1 : 1;
+            }
+        });
 
         return response;
     }

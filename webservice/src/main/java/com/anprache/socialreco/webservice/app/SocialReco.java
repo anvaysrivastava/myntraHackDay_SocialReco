@@ -1,12 +1,14 @@
 package com.anprache.socialreco.webservice.app;
 
-import com.anprache.dao.Follow;
 import com.anprache.socialreco.webservice.app.config.SocialRecoConfig;
 import com.anprache.socialreco.webservice.app.healthcheck.ConfigHealthCheck;
 import com.anprache.socialreco.webservice.app.path.*;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
 
 /**
  * Created by anvay.srivastava on 25/04/15.
@@ -57,6 +59,8 @@ public class SocialReco extends Application<SocialRecoConfig> {
         environment.jersey().register(followPerson);
         //Register the path ends
 
+        environment.servlets().addFilter("JDBCFilter", new JDBCFilter())
+                              .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
 
     }
 }

@@ -18,7 +18,7 @@ public class Follow extends Model {
     }
 
     public String getFollows() {
-        return getString(FOLLOWED_BY);
+        return getString(FOLLOWS);
     }
 
     public void setFollows(String follows) {

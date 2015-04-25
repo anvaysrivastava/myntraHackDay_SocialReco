@@ -23,12 +23,12 @@ public class SignUP {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name){
-        DBUtils.init();
+
         User user = new User();
         user.setAccountId(accountId);
         user.setName(name);
         boolean success = user.saveIt();
-        DBUtils.commit();
+
         return success ? "SUCCESS" : "FAILED";
     }
 

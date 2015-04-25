@@ -1,7 +1,6 @@
 package com.anprache.socialreco.webservice.app.path;
 
 import com.anprache.dao.Follow;
-import com.anprache.dao.utils.DBUtils;
 import com.anprache.social.common.constants.Constants;
 
 import javax.ws.rs.POST;
@@ -22,12 +21,12 @@ public class FollowPerson {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String reportFollower(@QueryParam(Constants.FOLLOWED_ACCOUNT_ID)String followedId, @QueryParam(Constants.FOLLOWER_ACCOUNT_ID)String followerId) {
-        DBUtils.init();
+
         Follow follow = new Follow();
-        follow.setFollowedBy(followedId);
-        follow.setFollows(followerId);
+        follow.setFollowedBy(followerId);
+        follow.setFollows(followedId);
         boolean success = follow.saveIt();
-        DBUtils.commit();
+
         if (success) {
             return "Success";
         }

@@ -1,7 +1,6 @@
 package com.anprache.dao;
 
-import com.anprache.Constants;
-import org.javalite.activejdbc.Base;
+import com.anprache.dao.utils.DBUtils;
 import org.junit.After;
 import org.junit.Before;
 
@@ -11,15 +10,12 @@ import org.junit.Before;
 public class BaseDaoTest {
     @Before
     public void setUp() throws Exception {
-        Base.open(Constants.JDBC_DRIVER, Constants.JDBC_URL, Constants.SQL_USERNAME, Constants.SQL_PASSWORD);
-        Base.openTransaction();
+        DBUtils.init();
     }
 
     @After
     public void tearDown() throws Exception {
-        Base.rollbackTransaction();
-        Base.close();
-
+        DBUtils.rollback();
     }
 
 }

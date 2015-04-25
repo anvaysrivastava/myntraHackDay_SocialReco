@@ -1,0 +1,1 @@
+mvn clean install && java -jar /home/hackday/myntraHackDay_SocialReco/webservice/target/webservice-1.0-SNAPSHOT.jar server /home/hackday/myntraHackDay_SocialReco/webservice/src/main/resources/socialReco.yml

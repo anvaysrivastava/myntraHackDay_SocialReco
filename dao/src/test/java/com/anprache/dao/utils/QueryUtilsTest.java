@@ -87,4 +87,40 @@ public class QueryUtilsTest extends BaseDaoTest {
         User user1 = QueryUtils.getUser("ACC1");
         Assert.assertEquals(user1.getName(), "Name #1");
     }
+
+    @Test
+    public void testNamePrefixSearch() throws Exception {
+        User user = new User();
+        user.setName("Name1");
+        user.setAccountId("ACC1");
+        user.saveIt();
+        user = new User();
+        user.setName("Name2");
+        user.setAccountId("ACC2");
+        user.saveIt();
+        user = new User();
+        user.setName("Nme1");
+        user.setAccountId("ACC3");
+        user.saveIt();
+        user = new User();
+        user.setName("1Name");
+        user.setAccountId("ACC4");
+        user.saveIt();
+        user = new User();
+        user.setName("Nam");
+        user.setAccountId("ACC5");
+        user.saveIt();
+
+        List<User> users = QueryUtils.getUsers("N");
+        Assert.assertEquals(users.size(), 4);
+
+        users = QueryUtils.getUsers("Na");
+        Assert.assertEquals(users.size(), 3);
+
+        users = QueryUtils.getUsers("Nam");
+        Assert.assertEquals(users.size(), 3);
+
+        users = QueryUtils.getUsers("Name");
+        Assert.assertEquals(users.size(), 2);
+    }
 }

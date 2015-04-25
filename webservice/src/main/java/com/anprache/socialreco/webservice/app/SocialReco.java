@@ -42,6 +42,15 @@ public class SocialReco extends Application<SocialRecoConfig> {
 
         SignUP signUP = new SignUP();
         environment.jersey().register(signUP);
+
+        FetchRecommendedPeople fetchRecommendedPeople = new FetchRecommendedPeople();
+        environment.jersey().register(fetchRecommendedPeople);
+
+        SearchPeople searchPeople = new SearchPeople();
+        environment.jersey().register(searchPeople);
+
+        FetchFollowedPeople fetchFollowedPeople = new FetchFollowedPeople();
+        environment.jersey().register(fetchFollowedPeople);
         //Register the path ends
 
 

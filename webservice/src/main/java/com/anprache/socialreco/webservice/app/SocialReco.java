@@ -2,6 +2,7 @@ package com.anprache.socialreco.webservice.app;
 
 import com.anprache.socialreco.webservice.app.config.SocialRecoConfig;
 import com.anprache.socialreco.webservice.app.healthcheck.ConfigHealthCheck;
+import com.anprache.socialreco.webservice.app.path.ComparePeople;
 import com.anprache.socialreco.webservice.app.path.Feed;
 import com.anprache.socialreco.webservice.app.path.Hello;
 import com.anprache.socialreco.webservice.app.path.RegisterProductSwipe;
@@ -38,6 +39,9 @@ public class SocialReco extends Application<SocialRecoConfig> {
 
         Feed feed = new Feed();
         environment.jersey().register(feed);
+
+        ComparePeople comparePeople = new ComparePeople();
+        environment.jersey().register(comparePeople);
         //Register the path ends
 
 

@@ -7,6 +7,9 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
+
 /**
  * Created by anvay.srivastava on 25/04/15.
  */
@@ -51,8 +54,13 @@ public class SocialReco extends Application<SocialRecoConfig> {
 
         FetchFollowedPeople fetchFollowedPeople = new FetchFollowedPeople();
         environment.jersey().register(fetchFollowedPeople);
+
+        FollowPerson followPerson = new FollowPerson();
+        environment.jersey().register(followPerson);
         //Register the path ends
 
+        environment.servlets().addFilter("JDBCFilter", new JDBCFilter())
+                              .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
 
     }
 }

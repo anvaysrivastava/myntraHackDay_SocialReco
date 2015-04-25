@@ -14,11 +14,15 @@ public class DBUtils {
 
     public static void commit() {
         Base.commitTransaction();
+        close();
+    }
+
+    public static void close() {
         Base.close();
     }
 
     public static void rollback() {
         Base.rollbackTransaction();
-        Base.close();
+        close();
     }
 }

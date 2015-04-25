@@ -14,14 +14,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
-=======
 import java.util.LinkedHashSet;
->>>>>>> master
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by anvay.srivastava on 25/04/15.

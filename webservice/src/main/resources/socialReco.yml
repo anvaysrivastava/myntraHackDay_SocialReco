@@ -4,7 +4,7 @@ server:
   adminMaxThreads: 64
   applicationConnectors:
     - type: http
-      port: 8124
+      port: 80
   adminConnectors:
     - type: http
       port: 8125

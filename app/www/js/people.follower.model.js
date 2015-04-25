@@ -12,7 +12,7 @@ var PeopleFollowerModel = Backbone.Model.extend({
 
     getPersonId: function(){
         return this.get('person').accountId;
-    }
+    },
 
     getPersonDifference: function(){
         return this.get('personDifference').percentageDifference;

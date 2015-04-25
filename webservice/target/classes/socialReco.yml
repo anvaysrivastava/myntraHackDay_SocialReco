@@ -1,0 +1,12 @@
+maintainer : Anvay Srivastava
+server:
+  adminMinThreads: 1
+  adminMaxThreads: 64
+  applicationConnectors:
+    - type: http
+      port: 8124
+  adminConnectors:
+    - type: http
+      port: 8125
+  gzip:
+    enabled: false

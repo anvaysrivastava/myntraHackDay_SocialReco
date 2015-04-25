@@ -34,13 +34,13 @@
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" id="feed" class="btn btn-default navbar-btn">
+                    <button type="button" id="feed-link" class="btn btn-default navbar-btn">
                         <span class="glyphicon glyphicon-heart"></span>
                     </button>
-                    <button type="button" id="people" class="btn btn-default navbar-btn">
+                    <button type="button" id="people-link" class="btn btn-default navbar-btn">
                         <span class="glyphicon glyphicon-user"></span>
                     </button>
-                    <button type="button" id="store" class="btn btn-default navbar-btn">
+                    <button type="button" id="store-link" class="btn btn-default navbar-btn">
                         <span class="glyphicon glyphicon-home"></span>
                     </button>
                     
@@ -49,15 +49,62 @@
               </div><!-- /.container-fluid -->
             </nav>
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div id="feed-page">
+                <div class="text-center">
+                    <ul class="list-unstyled">
+                    </ul>
+                </div>
+            </div>
+            <div id="feed-detail-page" class='hide'>
+
+                div.align-center>ul.list-unstyled>li*4>(div>img[src=http://placehold.it/350X350/444444/cccccc&text=DEMO-$$])+(div>(h3{TITLE $$}+div>ul>li{INFO $$}*3))
+            </div>
+        </div>
         <div class="footer"></div>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
-        <script type="text/javascript" src="js/vendor/require.js"></script>
+        <script type="text/javascript" src="js/vendor/handlebars.js"></script>
+        
         <script type="text/javascript" src="js/vendor/underscore.js"></script>
         <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/vendor/backbone/backbone.js"></script>
-        <script type="text/javascript" src="js/vendor/handlebars.runtime.js"></script>
+        <script type="text/javascript" src="js/vendor/backbone-min.js"></script>
+        <script type="text/javascript" src="js/vendor/hammer.min.js"></script>
+
+
+        <script type="text/javascript" src="js/product.model.js"></script>
+        <script type="text/javascript" src="js/feed.model.js"></script>
+        <script type="text/javascript" src="js/feed.collection.js"></script>
+        <script type="text/javascript" src="js/feed.view.js"></script>
+        <script type="text/javascript">
+            var event_manager = {};
+            _.extend(event_manager, Backbone.Events);
+
+            // var obj = new ProductModel();
+            
+            // obj.on("sync", function(){
+            //     console.log(obj.get("data").styleImages.default.imageURL);
+            //     var img = $("<img src='" + obj.get("data").styleImages.default.imageURL + "'/>");
+            //     $(".footer").append(img);
+            // });
+
+            // obj.fetch({
+            //     productId : '123450'
+            // });
+
+            var feedView = new FeedPageView();
+
+            
+        </script>
+
+        <script id="feed-template" type="text/x-handlebars-template">
+            <li>
+                <div class="row image"><img src="{{imageUrl}}" height="350px" alt=""></div>
+                <div class="row">
+                    <div class="col-xs-6" data-id="{{productId}}" id="pass-button"><span class="glyphicon glyphicon-remove"></span></div>
+                    <div class="col-xs-6" data-id="{{productId}}" id="like-button"><span class="glyphicon glyphicon-heart"></span></div>
+                </div>
+            </li>
+        </script>
     </body>
 </html>

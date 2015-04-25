@@ -1,7 +1,7 @@
 package com.anprache.socialreco.webservice.app.path;
 
 import com.anprache.social.common.constants.Constants;
-import com.anprache.social.common.pojo.compare.PeopleDifference;
+import com.anprache.social.common.pojo.compare.PersonDifference;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,8 +21,8 @@ public class ComparePeople {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public PeopleDifference comparePeople(@QueryParam(Constants.SOURCE_ACCOUNT_ID)String sourceAccountId, @QueryParam(Constants.COMPARED_ACCOUNT_ID) String comparedAccountId) {
-        PeopleDifference peopleDifference = new PeopleDifference();
+    public PersonDifference comparePeople(@QueryParam(Constants.SOURCE_ACCOUNT_ID)String sourceAccountId, @QueryParam(Constants.COMPARED_ACCOUNT_ID) String comparedAccountId) {
+        PersonDifference peopleDifference = new PersonDifference();
         peopleDifference.setPercentageDifference("19.23");
         return peopleDifference;
     }

@@ -14,8 +14,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
+=======
+import java.util.LinkedHashSet;
+>>>>>>> master
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,13 +37,14 @@ public class SearchPeople {
         List<PersonInRespectOfAnotherPerson> response = Lists.newArrayList();
 
         List<User> users = QueryUtils.getUsers(searchString);
-        List<String> personAProduct = QueryUtils.getLikedProducts(searchAccountId).stream().map(String::valueOf).collect(Collectors.toList());
+        LinkedHashSet personAProduct = QueryUtils.getLikedProducts(searchAccountId);
 
         for (User anotherUser : users) {
             if (anotherUser.getAccountId().equals(searchAccountId)) {
                 continue;
             }
-            List<String> personBProduct = QueryUtils.getLikedProducts(anotherUser.getAccountId()).stream().map(String::valueOf).collect(Collectors.toList());
+            LinkedHashSet personBProduct = QueryUtils.getLikedProducts(anotherUser.getAccountId());
+
             double score = CompareUtils.compare(personAProduct, personBProduct);
             PersonInRespectOfAnotherPerson anotherPerson = new PersonInRespectOfAnotherPerson();
             anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId()));

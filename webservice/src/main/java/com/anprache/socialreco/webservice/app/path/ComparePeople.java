@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +26,9 @@ public class ComparePeople {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public PersonDifference comparePeople(@QueryParam(Constants.SOURCE_ACCOUNT_ID)String sourceAccountId, @QueryParam(Constants.COMPARED_ACCOUNT_ID) String comparedAccountId) {
-        List<String> personAProduct = QueryUtils.getLikedProducts(sourceAccountId).stream().map(String::valueOf).collect(Collectors.toList());
-        List<String> personBProduct = QueryUtils.getLikedProducts(comparedAccountId).stream().map(String::valueOf).collect(Collectors.toList());
+    public PersonDifference comparePeople(@QueryParam(Constants.SOURCE_ACCOUNT_ID) String sourceAccountId, @QueryParam(Constants.COMPARED_ACCOUNT_ID) String comparedAccountId) {
+        LinkedHashSet personAProduct = QueryUtils.getLikedProducts(sourceAccountId);
+        LinkedHashSet personBProduct = QueryUtils.getLikedProducts(comparedAccountId);
         double score = CompareUtils.compare(personAProduct, personBProduct);
         PersonDifference peopleDifference = new PersonDifference();
         peopleDifference.setPercentageDifference(String.valueOf(score));

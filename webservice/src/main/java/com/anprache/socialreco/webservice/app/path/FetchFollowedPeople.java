@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,10 +33,10 @@ public class FetchFollowedPeople {
     public List<PersonInRespectOfAnotherPerson> getRecommendedPeople(@QueryParam(Constants.ACCOUNT_ID) String accountId) {
         List<PersonInRespectOfAnotherPerson> recommendation = Lists.newArrayList();
         List<Follow> followList = QueryUtils.getFollowingPeople(accountId);
-        List<String> personAProduct = QueryUtils.getLikedProducts(accountId).stream().map(String::valueOf).collect(Collectors.toList());
+        LinkedHashSet personAProduct = QueryUtils.getLikedProducts(accountId);
 
         for (Follow follow : followList) {
-            List<String> personBProduct = QueryUtils.getLikedProducts(follow.getFollows()).stream().map(String::valueOf).collect(Collectors.toList());
+            LinkedHashSet personBProduct = QueryUtils.getLikedProducts(follow.getFollows());
 
             double difference = CompareUtils.compare(personAProduct, personBProduct);
             User anotherUser = QueryUtils.getUser(follow.getFollows());

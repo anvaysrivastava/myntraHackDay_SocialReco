@@ -11,6 +11,7 @@
     <modules>
         <module>webservice</module>
         <module>dao</module>
+        <module>common</module>
     </modules>
 
     <dependencies>
@@ -20,6 +21,21 @@
             <version>0.7.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- or whatever version you use -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
 
 </project>

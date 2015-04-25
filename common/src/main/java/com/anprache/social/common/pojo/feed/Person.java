@@ -14,6 +14,11 @@ public class Person {
     public Person() {
     }
 
+    public Person(String name, String accountId) {
+        this.name = name;
+        this.accountId = accountId;
+    }
+
     public Person(String name) {
         this.name = name;
     }

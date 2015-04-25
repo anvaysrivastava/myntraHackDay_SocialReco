@@ -1,9 +1,13 @@
 package com.anprache.socialreco.webservice.app.path;
 
+import com.anprache.dao.Follow;
+import com.anprache.dao.User;
+import com.anprache.dao.utils.QueryUtils;
 import com.anprache.social.common.constants.Constants;
 import com.anprache.social.common.pojo.compare.PersonDifference;
 import com.anprache.social.common.pojo.feed.Person;
 import com.anprache.social.common.pojo.feed.PersonInRespectOfAnotherPerson;
+import com.anprache.social.common.utils.CompareUtils;
 import com.google.common.collect.Lists;
 
 import javax.ws.rs.GET;
@@ -25,19 +29,24 @@ public class FetchFollowedPeople {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<PersonInRespectOfAnotherPerson> getRecommendedPeople(@QueryParam(Constants.ACCOUNT_ID) String accountId) {
-        List<PersonInRespectOfAnotherPerson> dummyResponse = Lists.newArrayList();
-        for (int i = 0; i < 10; i++) {
-            PersonInRespectOfAnotherPerson personInRespectOfAnotherPerson = new PersonInRespectOfAnotherPerson();
-            Person person = new Person();
-            person.setName(String.format("This is person %d", i));
-            person.setAccountId(String.format("ACCOUNTID.NO:%d",i));
-            personInRespectOfAnotherPerson.setPerson(person);
-            PersonDifference personDifference = new PersonDifference();
-            personDifference.setPercentageDifference(String.format("1%d.%d%d", i, i, i));
-            personInRespectOfAnotherPerson.setPersonDifference(personDifference);
-            dummyResponse.add(personInRespectOfAnotherPerson);
+        List<PersonInRespectOfAnotherPerson> recommendation = Lists.newArrayList();
+        List<Follow> followList = QueryUtils.getFollowing(accountId);
+        List<String> personAProduct = QueryUtils.getFollowingProduct(accountId);
+
+        for (Follow follow : followList) {
+            List<String> personBProduct = QueryUtils.getFollowingProduct(follow.getFollows());
+
+            double difference = CompareUtils.compare(personAProduct, personBProduct);
+            User anotherUser = QueryUtils.getUser(follow.getFollows());
+
+            PersonInRespectOfAnotherPerson anotherPerson = new PersonInRespectOfAnotherPerson();
+            anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId()));
+            anotherPerson.setPersonDifference(new PersonDifference(String.valueOf(difference)));
+
+            recommendation.add(anotherPerson);
         }
-        return  dummyResponse;
+
+        return recommendation;
     }
 
 }

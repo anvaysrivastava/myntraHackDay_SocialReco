@@ -9,6 +9,9 @@ public class PersonDifference {
     public PersonDifference() {
     }
 
+    public PersonDifference(String percentageDifference) {
+        this.percentageDifference = percentageDifference;
+    }
 
     public String getPercentageDifference() {
         return percentageDifference;

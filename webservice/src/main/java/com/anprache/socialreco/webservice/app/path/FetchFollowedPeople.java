@@ -42,7 +42,7 @@ public class FetchFollowedPeople {
             User anotherUser = QueryUtils.getUser(follow.getFollows());
 
             PersonInRespectOfAnotherPerson anotherPerson = new PersonInRespectOfAnotherPerson();
-            anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId()));
+            anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId(), anotherUser.getImage()));
             anotherPerson.setPersonDifference(new PersonDifference(String.valueOf(difference)));
 
             recommendation.add(anotherPerson);

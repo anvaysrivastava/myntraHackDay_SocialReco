@@ -7,5 +7,6 @@ public class PeopleYouMayLikeProcessor implements Process {
     @Override
     public void run() {
         //GET all the users
+        //For each user
     }
 }

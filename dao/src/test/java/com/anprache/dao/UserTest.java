@@ -14,6 +14,7 @@ public class UserTest extends BaseDaoTest {
         User user = new User();
         user.setName("First Second Name");
         user.setAccountId("ACC1");
+        user.setImage("Image1");
         boolean success = user.saveIt();
         Assert.assertTrue(success);
     }
@@ -23,6 +24,7 @@ public class UserTest extends BaseDaoTest {
         User userAccount = new User();
         userAccount.setAccountId("ACC1");
         userAccount.setName("First Second Name");
+        userAccount.setImage("Image2");
         boolean success = userAccount.saveIt();
         Assert.assertTrue(success);
         List<User> users = User.findBySQL("SELECT * FROM users WHERE account_id like 'ACC%'");

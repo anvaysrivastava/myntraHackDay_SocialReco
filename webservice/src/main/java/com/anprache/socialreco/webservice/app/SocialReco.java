@@ -1,5 +1,6 @@
 package com.anprache.socialreco.webservice.app;
 
+import com.anprache.dao.Follow;
 import com.anprache.socialreco.webservice.app.config.SocialRecoConfig;
 import com.anprache.socialreco.webservice.app.healthcheck.ConfigHealthCheck;
 import com.anprache.socialreco.webservice.app.path.*;
@@ -51,6 +52,9 @@ public class SocialReco extends Application<SocialRecoConfig> {
 
         FetchFollowedPeople fetchFollowedPeople = new FetchFollowedPeople();
         environment.jersey().register(fetchFollowedPeople);
+
+        FollowPerson followPerson = new FollowPerson();
+        environment.jersey().register(followPerson);
         //Register the path ends
 
 

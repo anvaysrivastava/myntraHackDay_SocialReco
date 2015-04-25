@@ -12,4 +12,7 @@ public class Constants {
 
     public static final String SOURCE_ACCOUNT_ID = "sourceAccountId";
     public static final String COMPARED_ACCOUNT_ID = "comparedAccountId";
+
+    public static final String FOLLOWED_ACCOUNT_ID = "followedId";
+    public static final String FOLLOWER_ACCOUNT_ID = "followerId";
 }

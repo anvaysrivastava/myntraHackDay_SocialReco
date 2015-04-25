@@ -32,6 +32,9 @@ public class QueryUtils {
     public static double getCompareResult(String originAccountId, String comparatorAccountId) {
         LinkedHashSet originProducts = getLikedProducts(originAccountId);
         LinkedHashSet comparatorProducts = getLikedProducts(comparatorAccountId);
-        return CompareUtils.compare(originProducts,comparatorProducts);
+        return CompareUtils.compare(originProducts, comparatorProducts);
+    }
+    public static List<User> getUsers(String namePrefix) {
+        return User.findBySQL("SELECT * FROM users WHERE name like '" + namePrefix + "%'");
     }
 }

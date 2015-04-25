@@ -24,4 +24,8 @@ public class QueryUtils {
     public static User getUser(String accountId) {
         return User.findFirst(User.ACCOUNT_ID + " = ?", accountId);
     }
+
+    public static List<User> getUsers(String namePrefix) {
+        return User.findBySQL("SELECT * FROM users WHERE name like '" + namePrefix + "%'");
+    }
 }

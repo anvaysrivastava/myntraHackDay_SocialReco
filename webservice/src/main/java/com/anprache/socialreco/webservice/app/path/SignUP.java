@@ -22,11 +22,12 @@ public class SignUP {
 
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name){
+    public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name, @QueryParam(Constants.IMAGE)String image){
 
         User user = new User();
         user.setAccountId(accountId);
         user.setName(name);
+        user.setImage(image);
         boolean success = user.saveIt();
 
         return success ? "SUCCESS" : "FAILED";

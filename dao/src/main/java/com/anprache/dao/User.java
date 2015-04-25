@@ -8,6 +8,7 @@ import org.javalite.activejdbc.Model;
 public class User extends Model {
     public static String ACCOUNT_ID = "account_id";
     public static String NAME = "name";
+    public static String IMAGE = "image";
 
     public String getAccountId() {
         return (String) get(ACCOUNT_ID);
@@ -15,6 +16,14 @@ public class User extends Model {
 
     public void setAccountId(String accountId) {
         set(ACCOUNT_ID, accountId);
+    }
+
+    public String getImage() {
+        return (String) get(IMAGE);
+    }
+
+    public void setImage(String image) {
+        set(IMAGE, image);
     }
 
     public String getName() {

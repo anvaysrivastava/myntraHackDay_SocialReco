@@ -9,14 +9,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Person {
     private String name;
     private String accountId;
+    private String image;
 
 
     public Person() {
     }
 
-    public Person(String name, String accountId) {
+    public Person(String name, String accountId, String image) {
         this.name = name;
         this.accountId = accountId;
+        this.image = image;
     }
 
     public Person(String name) {
@@ -37,5 +39,13 @@ public class Person {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

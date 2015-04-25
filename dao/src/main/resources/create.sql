@@ -20,6 +20,7 @@ CREATE TABLE `like_dislikes` (
 CREATE TABLE `users` (
   `account_id` varchar(50) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
+  `image` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

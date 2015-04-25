@@ -1,5 +1,6 @@
 package com.anprache.dao;
 
+import com.anprache.Constants;
 import org.javalite.activejdbc.Base;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +11,7 @@ import org.junit.Before;
 public class BaseDaoTest {
     @Before
     public void setUp() throws Exception {
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/myntra", "root", "");
+        Base.open(Constants.JDBC_DRIVER, Constants.JDBC_URL, Constants.SQL_USERNAME, Constants.SQL_PASSWORD);
         Base.openTransaction();
     }
 

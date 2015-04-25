@@ -7,6 +7,7 @@ import com.anprache.dao.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class QueryUtilsTest extends BaseDaoTest {
         likeDislike.setProductId(4);
         likeDislike.saveIt();
 
-        List<Integer> productFollowed = QueryUtils.getLikedProducts("ACC1");
+        LinkedHashSet<Integer> productFollowed = QueryUtils.getLikedProducts("ACC1");
         Assert.assertEquals(productFollowed.size(), 4);
         Assert.assertEquals(productFollowed.stream().map(String::valueOf).collect(Collectors.toList()).size(), 4);
     }

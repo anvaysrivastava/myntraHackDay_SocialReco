@@ -14,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,10 +32,10 @@ public class SearchPeople {
         List<PersonInRespectOfAnotherPerson> response = Lists.newArrayList();
 
         List<User> users = QueryUtils.getUsers(searchString);
-        List<String> personAProduct = QueryUtils.getFollowingPeople(searchAccountId).stream().map(String::valueOf).collect(Collectors.toList());
+        LinkedHashSet personAProduct = QueryUtils.getLikedProducts(searchAccountId);
 
         for (User anotherUser : users) {
-            List<String> personBProduct = QueryUtils.getFollowingPeople(anotherUser.getAccountId()).stream().map(String::valueOf).collect(Collectors.toList());
+            LinkedHashSet personBProduct = QueryUtils.getLikedProducts(anotherUser.getAccountId());
             double score = CompareUtils.compare(personAProduct, personBProduct);
             PersonInRespectOfAnotherPerson anotherPerson = new PersonInRespectOfAnotherPerson();
             anotherPerson.setPerson(new Person(anotherUser.getName(), anotherUser.getAccountId()));

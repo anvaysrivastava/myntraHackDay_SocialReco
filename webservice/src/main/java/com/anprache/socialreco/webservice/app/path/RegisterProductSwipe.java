@@ -23,6 +23,7 @@ public class RegisterProductSwipe {
             LikeDislike likeDislike = new LikeDislike();
             likeDislike.setAccountId(accountId);
             likeDislike.setProductId(Integer.parseInt(productId));
+            likeDislike.setStatus("NOT_PROCESSED");
             boolean success = likeDislike.saveIt();
             if (success) {
                 return "SUCCESS";

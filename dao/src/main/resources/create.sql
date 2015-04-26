@@ -13,6 +13,7 @@ CREATE TABLE `login` (
 
 CREATE TABLE `like_dislikes` (
   `account_id` varchar(150) NOT NULL DEFAULT '',
+  `status` varchar(150) NOT NULL DEFAULT 'NOT_PROCESSED',
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`account_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

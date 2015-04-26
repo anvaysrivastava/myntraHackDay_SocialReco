@@ -8,6 +8,7 @@ import org.javalite.activejdbc.Model;
 public class LikeDislike extends Model {
     public static String ACCOUNT_ID = "account_id";
     public static String PRODUCT_ID = "product_id";
+    public static String STATUS = "status";
 
     public String getAccountId() {
         return (String) get(ACCOUNT_ID);
@@ -23,5 +24,13 @@ public class LikeDislike extends Model {
 
     public void setProductId(int productId) {
         set(PRODUCT_ID, productId);
+    }
+
+    public String getStatus() {
+        return (String) get(STATUS);
+    }
+
+    public void setStatus(String status) {
+        set(STATUS, status);
     }
 }

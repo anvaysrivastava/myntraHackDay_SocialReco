@@ -3,11 +3,9 @@ package com.anprache.socialreco.webservice.app.path;
 import com.anprache.dao.User;
 import com.anprache.dao.utils.DBUtils;
 import com.anprache.social.common.constants.Constants;
+import com.anprache.social.common.pojo.signup.SignupResponse;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -20,9 +18,9 @@ public class SignUP {
 
     }
 
-    @POST
-    @Produces(MediaType.TEXT_PLAIN)
-    public String signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name, @QueryParam(Constants.IMAGE)String image){
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public SignupResponse signUp(@QueryParam(Constants.ACCOUNT_ID) String accountId, @QueryParam(Constants.NAME) String name, @QueryParam(Constants.IMAGE)String image){
 
         User user = new User();
         user.setAccountId(accountId);
@@ -30,7 +28,7 @@ public class SignUP {
         user.setImage(image);
         boolean success = user.saveIt();
 
-        return success ? "SUCCESS" : "FAILED";
+        return new SignupResponse( success ? "SUCCESS" : "FAILED");
     }
 
 

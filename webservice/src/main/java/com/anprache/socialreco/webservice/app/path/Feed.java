@@ -26,7 +26,7 @@ public class Feed {
             FeedEntity feedEntity = new FeedEntity();
             feedEntity.setProductId(String.format("12345%d", i));
             List<Person> personList = Lists.newArrayList();
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 1; j++) {
                 personList.add(new Person(String.format("Person %d%d", i, j)));
             }
             feedEntity.setPeopleWhoLikedIt(personList);

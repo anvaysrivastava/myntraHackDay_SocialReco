@@ -1,13 +1,15 @@
 package com.anprache.socialreco.webservice.app.path;
 
+import com.anprache.dao.Follow;
 import com.anprache.dao.LikeDislike;
+import com.anprache.dao.Stream;
+import com.anprache.dao.utils.QueryUtils;
 import com.anprache.social.common.constants.Constants;
+import com.anprache.social.common.pojo.FollowPersonResponse.FollowPersonResponse;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Created by anvay.srivastava on 25/04/15.
@@ -15,9 +17,9 @@ import javax.ws.rs.core.MediaType;
 @Path("/register/product/swipe")
 public class RegisterProductSwipe {
 
-    @POST
-    @Produces(MediaType.TEXT_PLAIN)
-    public String action(@QueryParam(Constants.ACCOUNT_ID)String accountId, @QueryParam(Constants.PRODUCT_ID) String productId, @QueryParam(Constants.SWIPE_RESPONSE)Boolean swipeResponse ){
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public FollowPersonResponse action(@QueryParam(Constants.ACCOUNT_ID)String accountId, @QueryParam(Constants.PRODUCT_ID) String productId, @QueryParam(Constants.SWIPE_RESPONSE)Boolean swipeResponse ){
         //TODO insertion logic here.
         if (Boolean.TRUE.equals(swipeResponse)) {
             LikeDislike likeDislike = new LikeDislike();
@@ -25,12 +27,22 @@ public class RegisterProductSwipe {
             likeDislike.setProductId(Integer.parseInt(productId));
             likeDislike.setStatus("NOT_PROCESSED");
             boolean success = likeDislike.saveIt();
-            if (success) {
-                return "SUCCESS";
+            if(success){
+                List<Follow> peoples = QueryUtils.getFollowingPeople(accountId);
+                for (Follow people : peoples) {
+                    Stream stream = new Stream();
+                    stream.setFromAccountId(people.getFollows());
+                    stream.setForAccountId(people.getFollowedBy());
+                    stream.setProductId(Integer.parseInt(productId));
+                    stream.saveIt();
+                }
             }
-            return "ERROR";
+            if (success) {
+                return new FollowPersonResponse("SUCCESS");
+            }
+            return new FollowPersonResponse("ERROR");
         }
-        return "DISLIKE NOT SUPPORTED YET!";
+        return new FollowPersonResponse("DISLIKE NOT SUPPORTED YET!");
     }
 
 }

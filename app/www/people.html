@@ -33,15 +33,16 @@
             <nav class="navbar navbar-default">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
+                
                 <div class="navbar-header">
-                    <button type="button" id="feed" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-heart"></span>
+                    <button type="button" id="store-link" class="btn btn-default navbar-btn">
+                        <a href="home.html"><span class="glyphicon glyphicon-heart"></span></a>
                     </button>
-                    <button type="button" id="people" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-user"></span>
+                    <button type="button" id="people-link" class="btn btn-default navbar-btn">
+                        <a href="people.html"><span class="glyphicon glyphicon-user"></span></a>
                     </button>
-                    <button type="button" id="store" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-home"></span>
+                    <button type="button" id="store-link" class="btn btn-default navbar-btn">
+                        <a href="store.html"><span class="glyphicon glyphicon-home"></span></a>
                     </button>
                     
                     <a class="navbar-brand" href="#">Myntra Social</a>
@@ -50,56 +51,28 @@
             </nav>
         </div>
 
-        <!-- People page content begin -->
-        <div>
-            <div class="row">
-                <!-- Follow Feed page content begin -->
-                    <div class="content">
-                        <h2>Following</h2>
-                        <div id="follow-page">
-                            <div class="text-center">
-                                <ul class="list-unstyled">
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="people-follow-detail-page" class='hide'>
-
-                            div.align-center>ul.list-unstyled>li*4>(div>img[src=http://placehold.it/350X350/444444/cccccc&text=DEMO-$$])+(div>(h3{TITLE $$}+div>ul>li{INFO $$}*3))
-                        </div>
-                    </div>
-                <!-- End -->
-                 <!-- <div>
-                    <div class="page-header">
-                        <h2>Following</h2>
-                    </div>
-                    <ul class="list-group">
-                       <li class="list-group-item" id="user1">
-                                 <img src="img/mymanga.jpg" class="img-circle" width="50" height="50">
-                                 MR 5 
-                                 <span class="pull-right">
-                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                 </span>
-                                 <progress value="22" max="100"></progress>
-                        </li>    
+        <!-- Follow Feed page content begin -->
+        <div class="content people">
+            <div id="follow-page">
+                <div class="text-left">
+                    <!--<h2>Following</h2>-->
+                    <ul class="list-unstyled list-group">
                     </ul>
-                 </div> -->
-                 <!-- Follow Feed page content begin -->
-
-                 <div>
-                    <button type="button" class="btn btn-default btn-lg btn-block">Recommended</button>
-                      <ul class="list-group">
-                       <li class="list-group-item">
-                                 <img src="img/cecil-avatar.jpg" width="50" height="50">
-                                 MR 5 
-                                 <span class="pull-right">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true" align="right"></span>
-                                 </span>
-                                 <progress value="22" max="100"></progress>
-                        </li>
+                </div>
+            </div>
+            <div id="reco-page">
+                <div class="text-left">
+                    <h2>Recommended</h2>
+                    <div class="row">
+                        <input class="col-xs-8" id="search" name="search" type="text"/>
+                        <input class="col-xs-4" id="search-submit" type="button" value="Search"/>
+                    </div>
+                    <ul class="list-unstyled list-group">
                     </ul>
-                 </div>
+                </div>
             </div>
         </div>
+        <!-- End -->
         <!-- people page content ends -->
         <div class="content"></div>
         <div class="footer"></div>
@@ -113,20 +86,37 @@
         <script type="text/javascript" src="js/people.follower.model.js"></script>
         <script type="text/javascript" src="js/people.follower.collection.js"></script>
         <script type="text/javascript" src="js/people.follower.view.js"></script>
+        <script type="text/javascript" src="js/people.reco.model.js"></script>
+        <script type="text/javascript" src="js/people.reco.collection.js"></script>
+        <script type="text/javascript" src="js/people.reco.view.js"></script>
+        
         <script type="text/javascript">
-            var event_manager = {};
-            _.extend(event_manager, Backbone.Events);
             var followView = new FollowerPageView();
+            var recoView = new RecoPageView();
         </script>
+
+
         <script id="follow-template" type="text/x-handlebars-template">
             <li class="list-group-item">
                 <img src="img/{{personAccId}}" width="50" height="50">
                 {{personName}}
                 <span class="pull-right">
+                    <span class="glyphicon glyphicon-minus" aria-hidden="true" align="right"></span>
+                </span>
+                <progress value="{{percentDiff}}" max="100"></progress>
+            </li>
+        </script>
+        
+        <script id="reco-template" type="text/x-handlebars-template">
+            <li class="list-group-item">
+                <img src="{{image}}" width="50" height="50">
+                {{personName}}
+                <span class="pull-right follow-button" data-id={{accountId}}>
                     <span class="glyphicon glyphicon-plus" aria-hidden="true" align="right"></span>
                 </span>
                 <progress value="{{percentDiff}}" max="100"></progress>
             </li>
         </script>
+        
     </body>
 </html>

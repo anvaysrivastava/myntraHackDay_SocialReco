@@ -12,6 +12,13 @@ var FeedModel = Backbone.Model.extend({
         });
     },
 
+    getFollowerString: function() {
+        var like_list = this.get('peopleWhoLikedIt');
+        var string = "Liked by " + like_list[0].name 
+            + " & " + (like_list.length-1) + " other people";
+        return string;
+    },
+
     getProductId: function(){
         return this.get('productId');
     },

@@ -6,14 +6,16 @@ var RecoCollection = Backbone.Collection.extend({
     },
 
     url : function() {
-        return "http://vacuum-head.com/fetch/recommended/people";
+        return "http://10.0.12.152:8124/search/people";
     },
 
     sync : function(x,y,options){
         var id = options.accountID || "";
+        var searchString =  options.searchString || "";
 
         var query_params = {
-            accountID : id
+            accountID : id,
+            searchString: searchString
         }
 
         $.ajax({

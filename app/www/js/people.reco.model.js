@@ -12,7 +12,11 @@ var PeopleRecoModel = Backbone.Model.extend({
 
     getPersonId: function(){
         return this.get('person').accountId;
-    }
+    },
+
+    getPersonImage: function(){
+        return this.get('person').image;
+    },
 
     getPersonDifference: function(){
         return this.get('personDifference').percentageDifference;

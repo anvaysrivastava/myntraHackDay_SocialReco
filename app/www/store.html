@@ -35,13 +35,13 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" id="store-link" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-heart"></span>
+                        <a href="home.html"><span class="glyphicon glyphicon-heart"></span></a>
                     </button>
                     <button type="button" id="people-link" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <a href="people.html"><span class="glyphicon glyphicon-user"></span></a>
                     </button>
                     <button type="button" id="store-link" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-home"></span>
+                        <a href="store.html"><span class="glyphicon glyphicon-home"></span></a>
                     </button>
                     
                     <a class="navbar-brand" href="#">Myntra Social</a>
@@ -49,7 +49,7 @@
               </div><!-- /.container-fluid -->
             </nav>
         </div>
-        <div class="content">
+        <div class="content cards">
             <div id="store-page">
                 <div class="text-center">
                     <ul class="list-unstyled">
@@ -87,13 +87,15 @@
                 <div class="row">
                     <div>{{title}}</div>
                 </div>
+                <!--
                 <div class="row">
                     <div class="col-xs-8">{{brand}}</div>
                     <div class="col-xs-4">{{price}}</div>
                 </div>
+                -->
                 <div class="row">
-                    <div class="col-xs-6" data-id="{{productId}}" id="pass-button"><span class="glyphicon glyphicon-remove"></span></div>
-                    <div class="col-xs-6" data-id="{{productId}}" id="like-button"><span class="glyphicon glyphicon-heart"></span></div>
+                    <div class="reg-button pass-button col-xs-6" data-id="{{productId}}" data-type="pass"  ><span class="glyphicon glyphicon-remove"></span></div>
+                    <div class="reg-button like-button col-xs-6" data-id="{{productId}}" data-type="like"  ><span class="glyphicon glyphicon-heart"></span></div>
                 </div>
             </li>
         </script>

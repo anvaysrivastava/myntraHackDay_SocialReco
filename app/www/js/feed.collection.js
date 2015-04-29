@@ -6,7 +6,7 @@ var FeedCollection = Backbone.Collection.extend({
     },
 
     url : function() {
-        return "http://vacuum-head.com/fetch/feed";
+        return "http://10.0.12.152:8124/fetch/feed";
     },
 
     sync : function(x,y,options){

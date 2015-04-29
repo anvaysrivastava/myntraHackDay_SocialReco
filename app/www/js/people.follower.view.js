@@ -6,7 +6,7 @@ var FollowerPageView = Backbone.View.extend({
         },this));
 
         this.follow.fetch({
-            'accountID' : 'Test'
+            'accountID' : 'AI1'
         });
     },
 

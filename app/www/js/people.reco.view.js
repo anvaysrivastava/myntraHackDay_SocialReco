@@ -4,10 +4,20 @@ var RecoPageView = Backbone.View.extend({
         this.reco.on("sync", _.bind(function(){
             this.render();
         },this));
+        var that= this;
 
-        this.reco.fetch({
-            'accountID' : 'Test'
+        $("#search-submit").click(function(){
+            var searchString = $("#search").val();
+            that.reco.fetch({
+                //TODO
+                'accountID' : 'AI1',
+                'searchString' : searchString
+            });
         });
+    },
+
+    events :{
+        'click #follow-button' : 'followUser'
     },
 
     render: function(){
@@ -17,10 +27,37 @@ var RecoPageView = Backbone.View.extend({
         this.reco.each(function(recoModel){
             console.log("working");
             $("#reco-page div ul").append(template({
-                personName : followModel.getPersonName(),
-                personAccId : followModel.getPersonId(),
-                percentDiff : followModel.getPersonDifference()
+                personName : recoModel.getPersonName(),
+                accountId : recoModel.getPersonId(),
+                percentDiff : recoModel.getPersonDifference(),
+                image: recoModel.getPersonImage()
             }));
+        });
+
+        $(".follow-button").click(this.followUser);
+    },
+
+    followUser : function(ev) {
+
+        var followedId = $(ev.target.parentNode).data('id');
+        console.log('follow' + followedId);
+
+        var query_params = {
+            followerId : "AI1",
+            followedId : followedId
+        }
+
+        $.ajax({
+            type : "GET",
+            url : 'http://10.0.12.152:8124/report/follower',
+            success : function(res){
+                console.log('successfully followed');
+            },
+            dataType: "json",
+            data : query_params,
+            error: function(xhr, status, err){
+                console.log(status);
+            }
         });
     }
 });

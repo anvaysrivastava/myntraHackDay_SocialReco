@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="header">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" id="store-link" class="btn btn-default navbar-btn">
+                        <a href="home.html"><span class="glyphicon glyphicon-heart"></span></a>
+                    </button>
+                    <button type="button" id="people-link" class="btn btn-default navbar-btn">
+                        <a href="people.html"><span class="glyphicon glyphicon-user"></span></a>
+                    </button>
+                    <button type="button" id="store-link" class="btn btn-default navbar-btn">
+                        <a href="store.html"><span class="glyphicon glyphicon-home"></span></a>
+                    </button>
+                    
+                    <a class="navbar-brand" href="#">Myntra Social</a>
+                </div>
+              </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div class="content cards">
+            <div id="feed-page">
+                <div class="text-center">
+                    <ul class="list-unstyled">
+                    </ul>
+                </div>
+            </div>
+            <div id="feed-detail-page" class='hide'>
+
+                div.align-center>ul.list-unstyled>li*4>(div>img[src=http://placehold.it/350X350/444444/cccccc&text=DEMO-$$])+(div>(h3{TITLE $$}+div>ul>li{INFO $$}*3))
+            </div>
+        </div>
+        <div class="footer"></div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+        <script type="text/javascript" src="js/vendor/handlebars.js"></script>
+        
+        <script type="text/javascript" src="js/vendor/underscore.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/vendor/backbone-min.js"></script>
+        <script type="text/javascript" src="js/vendor/hammer.min.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.hammer.js"></script>
+
+
+        <script type="text/javascript" src="js/product.model.js"></script>
+        <script type="text/javascript" src="js/feed.model.js"></script>
+        <script type="text/javascript" src="js/feed.collection.js"></script>
+        <script type="text/javascript" src="js/feed.view.js"></script>
+        <script type="text/javascript">
+            var event_manager = {};
+            _.extend(event_manager, Backbone.Events);
+
+            // var obj = new ProductModel();
+            
+            // obj.on("sync", function(){
+            //     console.log(obj.get("data").styleImages.default.imageURL);
+            //     var img = $("<img src='" + obj.get("data").styleImages.default.imageURL + "'/>");
+            //     $(".footer").append(img);
+            // });
+
+            // obj.fetch({
+            //     productId : '123450'
+            // });
+
+            var feedView = new FeedPageView();
+
+            
+        </script>
+
+        <script id="feed-template" type="text/x-handlebars-template">
+            <li>
+                <div class="row image"><img src="{{imageUrl}}" height="350px" alt=""></div>
+                <div class="row">{{likeString}}</div>
+                <div class="row">
+                    <div class="reg-button pass-button col-xs-6" data-id="{{productId}}" data-type="pass"  ><span class="glyphicon glyphicon-remove"></span></div>
+                    <div class="reg-button like-button col-xs-6" data-id="{{productId}}" data-type="like"  ><span class="glyphicon glyphicon-heart"></span></div>
+                </div>
+            </li>
+        </script>
+    </body>
+</html>

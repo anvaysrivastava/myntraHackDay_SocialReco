@@ -3,5 +3,5 @@
 *.iws
 *.ids
 *.iws
-
 target/
+*.DS_Store
